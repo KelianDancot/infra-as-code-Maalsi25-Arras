@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 exit
 db.users.find({ name: "PersistCheck" }).pretty()
 use myapp
@@ -17,3 +18,11 @@ db.users.insertOne({ name: "PersistCheck", ts: new Date() })
 exit
 db.users.insertOne({ name: "PersistCheck", ts: new Date() })
 use myapp
+=======
+mongosh "mongodb://root:example@localhost:27017"
+docker compose down
+mongodb://root:example@localhost:27017 docker compose down
+db.users.find()
+db.users.insertOne({ name: "Alice", age: 25 })
+use testdb
+>>>>>>> Stashed changes

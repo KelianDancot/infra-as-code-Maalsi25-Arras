@@ -23,8 +23,14 @@ docker --version
 docker compose version
 Docker étant déjà installé, j’ai pu continuer le TP.
 
+<<<<<<< Updated upstream
 ## 2️⃣ Création du fichier Docker Compose
 J’ai créé un dossier de travail, puis un fichier docker-compose.yml :
+=======
+2️⃣ Création du fichier Docker Compose
+J’ai créé un dossier de travail, puis un fichier docker-compose.yml :
+
+>>>>>>> Stashed changes
 bash
 Copier le code
 mkdir mongo-docker
@@ -32,8 +38,14 @@ cd mongo-docker
 nano docker-compose.yml
 Ce fichier permet de configurer et lancer le conteneur MongoDB.
 
+<<<<<<< Updated upstream
 ## 3️⃣ Configuration de MongoDB
 Contenu du fichier docker-compose.yml :
+=======
+3️⃣ Configuration de MongoDB
+Contenu du fichier docker-compose.yml :
+
+>>>>>>> Stashed changes
 yaml
 Copier le code
 version: "3.9"
@@ -52,11 +64,22 @@ services:
       - ./db_data:/data/db
 Explications
 image : image officielle MongoDB
+<<<<<<< Updated upstream
 ports : accès à MongoDB via le port 27017
 environment : identifiants administrateur
 volumes : persistance des données
 
 ## 4️⃣ Lancement du conteneur MongoDB
+=======
+
+ports : accès à MongoDB via le port 27017
+
+environment : identifiants administrateur
+
+volumes : persistance des données
+
+4️⃣ Lancement du conteneur MongoDB
+>>>>>>> Stashed changes
 Le conteneur est lancé avec la commande suivante :
 
 bash
@@ -67,8 +90,12 @@ Vérification du conteneur :
 bash
 Copier le code
 docker ps
+<<<<<<< Updated upstream
 
 ## 5️⃣ Connexion au shell MongoDB
+=======
+5️⃣ Connexion au shell MongoDB
+>>>>>>> Stashed changes
 Connexion directe au conteneur MongoDB :
 
 bash
@@ -77,7 +104,11 @@ docker exec -it mongo mongosh -u root -p example
 📸 Connexion et insertion de données :
 
 
+<<<<<<< Updated upstream
 ## 6️⃣ Création d’une base et insertion de données
+=======
+6️⃣ Création d’une base et insertion de données
+>>>>>>> Stashed changes
 Dans le shell MongoDB :
 
 js
@@ -87,7 +118,11 @@ db.users.insertOne({ name: "Alice", age: 25 })
 db.users.find()
 Une base MongoDB existe uniquement après l’insertion d’au moins un document.
 
+<<<<<<< Updated upstream
 ## 7️⃣ Connexion via chaîne MongoDB
+=======
+7️⃣ Connexion via chaîne MongoDB
+>>>>>>> Stashed changes
 Connexion via une chaîne MongoDB :
 
 text
@@ -104,10 +139,20 @@ db.test.find()
 📸 Base tp_mongo fonctionnelle :
 
 
+<<<<<<< Updated upstream
 ## 8️⃣ Bonnes pratiques
 Utilisation de volumes Docker pour conserver les données
 Possibilité de modifier les identifiants MongoDB
 Docker permet une installation propre et rapide
+=======
+8️⃣ Bonnes pratiques
+Utilisation de volumes Docker pour conserver les données
+
+Possibilité de modifier les identifiants MongoDB
+
+Docker permet une installation propre et rapide
+
+>>>>>>> Stashed changes
 Solution idéale pour les environnements de développement
 
 ✅ Conclusion
@@ -115,7 +160,13 @@ Ce TP m’a permis de comprendre comment déployer MongoDB en local à l’aide 
 Docker Compose simplifie la configuration et le lancement des services, tout en garantissant un environnement stable et reproductible.
 
 📚 Ressources
+<<<<<<< Updated upstream
 https://docs.docker.com/
+=======
+
+https://docs.docker.com/
+
+>>>>>>> Stashed changes
 https://www.mongodb.com/docs/
 
 yaml
