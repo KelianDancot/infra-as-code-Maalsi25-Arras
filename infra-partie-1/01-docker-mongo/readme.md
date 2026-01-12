@@ -1,102 +1,143 @@
-<h1>Tp Docker et MongoDB</h1><br/>
-<h2>Pré-conditions</h2>
-<p>Avant de se lancer sur le tp, on doit vérifier que docker fonctionne sur notre machine</p>
-<ul>
-    <li>On vérifie la présence de Docker et sa version :<br/>
-        <code>
-            docker --version
-        </code><br/>
-    </li>
-    <li>
-        On s’assure que Docker est bien démarré :<br/>
-        <code>docker ps</code><br/>
-        Si tu as un “command not found” ou “Cannot connect to the Docker daemon” → 
-        il faut d’abord faire fonctionner Docker, sinon on ne continue pas.
-    </li>
-</ul>
+# 📦 TP – MongoDB en local avec Docker
 
-<h2>Étape 1 – Créer le dossier du TP</h2>
-<code>
-mkdir -p 01-docker-mongo
-cd 01-docker-mongo
-</code>
-<h2>Étape 2 – Créer le fichier docker-compose.yml</h3>
-<p>Crée un fichier appelé docker-compose.yml dans ce dossier et mets-y le contenu
-du pdf</p>
-<p>ATTENTION : docker compose dans sa version actuelle ne demande plus de préciser la version en en-tête du docker compose, à adapter donc selon votre version de docker compose ( vous aurez un message d'alerte dans le terminal de toute façon.</p>
-<p>Si ça rate :<br/>
-- vérifie le nom du fichier (pas d’extension .txt)
-- vérifie l’indentation YAML (2 espaces devant mongo : et les clés en dessous)
-</p>
-<h2>Étape 3 – Démarrer MongoDB</h2>
-<p>Toujours dans 01-docker-mongo :</p>
-<code>docker compose up -d
-</code>
-<p>
-La commande ne doit pas afficher d’erreur.
-Vérifie que le conteneur tourne :<br/>
-<code>docker ps</code>
-</p>
-<p>
-Si ça rate :<br/>
-- si le message dit “no such file or directory” → tu n’es pas dans le bon dossier<br/>
-- si le message dit “docker-compose: command not found” → essaie avec docker compose (sans tiret)<br/>
-- si l’image ne se télécharge pas → vérifier la connexion internet<br/>
+## 🎯 Objectif
+L’objectif de ce TP est de mettre en place une base de données **MongoDB en local** à l’aide de **Docker** et **Docker Compose**.  
+Cette solution permet de déployer MongoDB rapidement, sans installation directe sur la machine hôte, tout en garantissant la **persistance des données**.
 
-Tant que docker ps ne montre pas ton conteneur mongo, on ne passe pas à l’étape 4.
-</p>
-<h2>Étape 4 – Entrer dans MongoDB avec mongosh</h2>
-<p>On exécute un shell Mongo dans le conteneur :</p>
-<code>docker exec -it mongo mongosh -u root -p example
-</code>
-<p>Tu dois passer dans un prompt Mongo du genre :</p>
-<code>test>
-</code><br>
-ou<br>
-<code>>
-</code>
-<p>Si ça rate : <br>
+---
 
-“No such container” → ton conteneur ne s’appelle pas mongo → fais docker ps pour voir le nom exact
-“mongosh: not found” → tu n’as pas l’image officielle récente → on reprendra l’image mongo:7
-</p>
-<h2>Étape 5 – Créer une vraie base</h2>
-<p>Mongo ne “crée” pas une DB tant qu’on n’a rien dedans.</p>
-<p>À saisir dans le shell mongo :</p>
-<code>
-use myapp
-</code><br/>
-<code>
-db.createCollection("users")
-</code><br/>
-<code>
-db.users.insertOne({ name: "Alice" })
-</code><br/>
-<code>
+## 🧰 Outils utilisés
+- Ubuntu  
+- Docker  
+- Docker Compose  
+- MongoDB (image officielle Docker)
+
+---
+
+## 1️⃣ Installation de Docker
+
+Avant de commencer, j’ai vérifié que Docker était bien installé sur ma machine :
+
+```bash
+docker --version
+docker compose version
+Docker étant déjà installé, j’ai pu continuer le TP.
+
+## 2️⃣ Création du fichier Docker Compose
+J’ai créé un dossier de travail, puis un fichier docker-compose.yml :
+bash
+Copier le code
+mkdir mongo-docker
+cd mongo-docker
+nano docker-compose.yml
+Ce fichier permet de configurer et lancer le conteneur MongoDB.
+
+## 3️⃣ Configuration de MongoDB
+Contenu du fichier docker-compose.yml :
+yaml
+Copier le code
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./db_data:/data/db
+Explications
+image : image officielle MongoDB
+ports : accès à MongoDB via le port 27017
+environment : identifiants administrateur
+volumes : persistance des données
+
+## 4️⃣ Lancement du conteneur MongoDB
+Le conteneur est lancé avec la commande suivante :
+
+bash
+Copier le code
+docker compose up -d
+Vérification du conteneur :
+
+bash
+Copier le code
+docker ps
+
+## 5️⃣ Connexion au shell MongoDB
+Connexion directe au conteneur MongoDB :
+
+bash
+Copier le code
+docker exec -it mongo mongosh -u root -p example
+📸 Connexion et insertion de données :
+
+
+## 6️⃣ Création d’une base et insertion de données
+Dans le shell MongoDB :
+
+js
+Copier le code
+use testdb
+db.users.insertOne({ name: "Alice", age: 25 })
+db.users.find()
+Une base MongoDB existe uniquement après l’insertion d’au moins un document.
+
+## 7️⃣ Connexion via chaîne MongoDB
+Connexion via une chaîne MongoDB :
+
+text
+Copier le code
+mongodb://root:example@localhost:27017
+Création d’une base dédiée au TP :
+
+js
+Copier le code
 show dbs
-</code><br/>
-<code>
-show collections
-</code>
-<p>
-Validation attendue :
+use tp_mongo
+db.test.insertOne({ message: "TP OK" })
+db.test.find()
+📸 Base tp_mongo fonctionnelle :
 
-show collections doit afficher users<br/>
-show dbs doit afficher myapp (parfois après une autre commande, c’est normal)<br/>
-pas d’erreur sur l’insertion
-</p>
-<p>
-Si ça rate :
 
-Si show dbs n’affiche pas myapp, refais une insertion<br>
-Si tu as une erreur de droits, vérifie bien que tu es connecté avec -u root -p example
-</p>
-<p>Quand c’est bon, tu peux faire :</p>
-<code>exit</code><br/>
-<h2>Étape 6 – Arrêter ou laisser tourner</h2>
-<p>Option A – laisser tourner
-Ne fais rien, le conteneur continue à tourner.</p>
-<p>Option B – arrêter</p>
-<code>docker compose down</code>
-<p>Vérifier l’arrêt du conteneur : ne doit plus afficher mongo</p>
-<code>docker ps</code><br/>
+## 8️⃣ Bonnes pratiques
+Utilisation de volumes Docker pour conserver les données
+Possibilité de modifier les identifiants MongoDB
+Docker permet une installation propre et rapide
+Solution idéale pour les environnements de développement
+
+✅ Conclusion
+Ce TP m’a permis de comprendre comment déployer MongoDB en local à l’aide de Docker.
+Docker Compose simplifie la configuration et le lancement des services, tout en garantissant un environnement stable et reproductible.
+
+📚 Ressources
+https://docs.docker.com/
+https://www.mongodb.com/docs/
+
+yaml
+Copier le code
+
+---
+
+### ✅ À FAIRE AVANT DE PUSH SUR GIT
+✔️ Vérifie que tes images sont bien nommées :
+image.png
+imag2e.png
+
+yaml
+Copier le code
+
+✔️ Qu’elles sont à la racine du dépôt (ou adapte le chemin)
+
+---
+
+Si tu veux, je peux aussi :
+- 🧑‍🏫 adapter le niveau **exact prof / BTS / BUT / Licence**
+- 📄 faire un **README encore plus court**
+- 🚀 t’aider à faire un **commit Git propre**
+
+Dis-moi 😄
