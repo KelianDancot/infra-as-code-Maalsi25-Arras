@@ -1,0 +1,1 @@
+<h1>Atelier Opentofu en local avec Docker</h1>

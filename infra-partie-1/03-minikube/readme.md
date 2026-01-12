@@ -1,0 +1,1 @@
+<h1>Atelier Minikube</h1>

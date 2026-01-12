@@ -1,0 +1,1 @@
+<h1>ATELIER 2 – Stack locale “catalogue API” (OpenTofu + Docker)</h1>
