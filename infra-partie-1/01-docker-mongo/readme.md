@@ -107,8 +107,6 @@ docker exec -it mongo mongosh -u root -p example
 <<<<<<< Updated upstream
 ## 6️⃣ Création d’une base et insertion de données
 =======
-6️⃣ Création d’une base et insertion de données
->>>>>>> Stashed changes
 Dans le shell MongoDB :
 
 js
@@ -121,8 +119,6 @@ Une base MongoDB existe uniquement après l’insertion d’au moins un document
 <<<<<<< Updated upstream
 ## 7️⃣ Connexion via chaîne MongoDB
 =======
-7️⃣ Connexion via chaîne MongoDB
->>>>>>> Stashed changes
 Connexion via une chaîne MongoDB :
 
 text
@@ -138,21 +134,10 @@ db.test.insertOne({ message: "TP OK" })
 db.test.find()
 📸 Base tp_mongo fonctionnelle :
 
-
-<<<<<<< Updated upstream
 ## 8️⃣ Bonnes pratiques
 Utilisation de volumes Docker pour conserver les données
 Possibilité de modifier les identifiants MongoDB
 Docker permet une installation propre et rapide
-=======
-8️⃣ Bonnes pratiques
-Utilisation de volumes Docker pour conserver les données
-
-Possibilité de modifier les identifiants MongoDB
-
-Docker permet une installation propre et rapide
-
->>>>>>> Stashed changes
 Solution idéale pour les environnements de développement
 
 ✅ Conclusion
@@ -160,13 +145,7 @@ Ce TP m’a permis de comprendre comment déployer MongoDB en local à l’aide 
 Docker Compose simplifie la configuration et le lancement des services, tout en garantissant un environnement stable et reproductible.
 
 📚 Ressources
-<<<<<<< Updated upstream
 https://docs.docker.com/
-=======
-
-https://docs.docker.com/
-
->>>>>>> Stashed changes
 https://www.mongodb.com/docs/
 
 yaml
