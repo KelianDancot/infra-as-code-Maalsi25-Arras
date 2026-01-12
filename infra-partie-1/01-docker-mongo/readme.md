@@ -23,14 +23,9 @@ docker --version
 docker compose version
 Docker étant déjà installé, j’ai pu continuer le TP.
 
-<<<<<<< Updated upstream
+
 ## 2️⃣ Création du fichier Docker Compose
 J’ai créé un dossier de travail, puis un fichier docker-compose.yml :
-=======
-2️⃣ Création du fichier Docker Compose
-J’ai créé un dossier de travail, puis un fichier docker-compose.yml :
-
->>>>>>> Stashed changes
 bash
 Copier le code
 mkdir mongo-docker
@@ -38,14 +33,9 @@ cd mongo-docker
 nano docker-compose.yml
 Ce fichier permet de configurer et lancer le conteneur MongoDB.
 
-<<<<<<< Updated upstream
+
 ## 3️⃣ Configuration de MongoDB
 Contenu du fichier docker-compose.yml :
-=======
-3️⃣ Configuration de MongoDB
-Contenu du fichier docker-compose.yml :
-
->>>>>>> Stashed changes
 yaml
 Copier le code
 version: "3.9"
@@ -64,22 +54,11 @@ services:
       - ./db_data:/data/db
 Explications
 image : image officielle MongoDB
-<<<<<<< Updated upstream
 ports : accès à MongoDB via le port 27017
 environment : identifiants administrateur
 volumes : persistance des données
 
 ## 4️⃣ Lancement du conteneur MongoDB
-=======
-
-ports : accès à MongoDB via le port 27017
-
-environment : identifiants administrateur
-
-volumes : persistance des données
-
-4️⃣ Lancement du conteneur MongoDB
->>>>>>> Stashed changes
 Le conteneur est lancé avec la commande suivante :
 
 bash
@@ -90,12 +69,8 @@ Vérification du conteneur :
 bash
 Copier le code
 docker ps
-<<<<<<< Updated upstream
 
 ## 5️⃣ Connexion au shell MongoDB
-=======
-5️⃣ Connexion au shell MongoDB
->>>>>>> Stashed changes
 Connexion directe au conteneur MongoDB :
 
 bash
