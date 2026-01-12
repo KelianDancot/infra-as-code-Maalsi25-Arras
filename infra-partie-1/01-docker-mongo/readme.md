@@ -23,6 +23,7 @@ docker --version
 docker compose version
 Docker étant déjà installé, j’ai pu continuer le TP.
 
+---
 
 ## 2️⃣ Création du fichier Docker Compose
 J’ai créé un dossier de travail, puis un fichier docker-compose.yml :
@@ -33,6 +34,7 @@ cd mongo-docker
 nano docker-compose.yml
 Ce fichier permet de configurer et lancer le conteneur MongoDB.
 
+---
 
 ## 3️⃣ Configuration de MongoDB
 Contenu du fichier docker-compose.yml :
@@ -58,6 +60,8 @@ ports : accès à MongoDB via le port 27017
 environment : identifiants administrateur
 volumes : persistance des données
 
+---
+
 ## 4️⃣ Lancement du conteneur MongoDB
 Le conteneur est lancé avec la commande suivante :
 
@@ -70,6 +74,8 @@ bash
 Copier le code
 docker ps
 
+---
+
 ## 5️⃣ Connexion au shell MongoDB
 Connexion directe au conteneur MongoDB :
 
@@ -77,9 +83,9 @@ bash
 Copier le code
 docker exec -it mongo mongosh -u root -p example
 📸 Connexion et insertion de données :
+image.png
+---
 
-
-<<<<<<< Updated upstream
 ## 6️⃣ Création d’une base et insertion de données
 =======
 Dans le shell MongoDB :
@@ -91,7 +97,8 @@ db.users.insertOne({ name: "Alice", age: 25 })
 db.users.find()
 Une base MongoDB existe uniquement après l’insertion d’au moins un document.
 
-<<<<<<< Updated upstream
+---
+
 ## 7️⃣ Connexion via chaîne MongoDB
 =======
 Connexion via une chaîne MongoDB :
@@ -108,6 +115,8 @@ use tp_mongo
 db.test.insertOne({ message: "TP OK" })
 db.test.find()
 📸 Base tp_mongo fonctionnelle :
+image2e.png
+---
 
 ## 8️⃣ Bonnes pratiques
 Utilisation de volumes Docker pour conserver les données
